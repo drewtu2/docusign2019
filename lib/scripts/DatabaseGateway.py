@@ -51,9 +51,9 @@ class DatabaseGateway:
         with open(os.path.join(self.APP_PATH, self.advocate_count_folder, "%s.txt"%issueId), "r") as f:
             for line in f:
                 count = int(line)
-                print(count)
+                #print(count)
                 count +=1
-                print(count)
+                #print(count)
         with open(os.path.join(self.APP_PATH, self.advocate_count_folder, "%s.txt"%issueId), 'w+') as f:
             f.write(str(count))
     
