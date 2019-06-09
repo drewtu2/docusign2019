@@ -84,3 +84,6 @@ pickle-email-*.html
 *~
 
 venv
+__pycache__/
+.vscode
+
