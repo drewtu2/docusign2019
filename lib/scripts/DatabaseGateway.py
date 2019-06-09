@@ -1,9 +1,13 @@
 from get_reps import get_my_reps
 from Entities import *
+import os
 
 class DatabaseGateway: 
 
     def __init__(self):
+        self.APP_PATH = os.path.dirname(os.path.abspath(__file__))
+        self.issue_folder = "sample_letter/issues/"
+        
         self.users = {
             "000": Person("Bob", "Builder", 
             Address("101 bob way", "bob town", "bb", "50014"),
@@ -13,7 +17,7 @@ class DatabaseGateway:
             "000": [ParkHistoryEntry("Yellow Stone National Park", "Jan 1, 2019")]
         }
 
-    def get_senator_from_zip(self, zip):
+    def get_senator_from_zip(self, zip) -> Person:
 
         def build_email(first, last):
             return "%s.%s@mail.house.gov"%(first, last)
@@ -30,21 +34,24 @@ class DatabaseGateway:
         split = results[0][0].split(" ") # splits on name
         return Person(split[0], split[1], self.get_dummy_address(), build_email(split[0], split[1]))
 
-    def get_dummy_address(self):
+    def get_dummy_address(self) -> Address:
         return Address("101 dummy street", "dummyville", "DA", "50014")
 
-    def get_name_from_userId(self, userId):
+    def get_name_from_userId(self, userId) -> str:
         user = self.users[userId]
         return str(user)
     
-    def get_email_from_userId(self, userId):
+    def get_email_from_userId(self, userId) -> str:
         user = self.users[userId]
         return str(user.email)
     
-    def get_person_from_userId(self, userId):
+    def get_person_from_userId(self, userId) -> Person:
         return self.users[userId]
     
-    def get_senator_from_userId(self, userId):
+    def get_person_with_id_from_userId(self, userId) -> PersonWithId:
+        return PersonWithId(self.users[userId], userId)
+    
+    def get_senator_from_userId(self, userId) -> Person:
         person = self.get_person_from_userId(userId)
         senator_person = self.get_senator_from_zip(person.address.zipcode)
 
@@ -52,6 +59,13 @@ class DatabaseGateway:
     
     def get_park_history_from_userId(self, userId):
         return self.users_history[userId]
+
+    def get_issue_body(self, issueId) -> str:
+        path = os.path.join(self.APP_PATH, self.issue_folder, "%s%s"%(issueId, ".txt"))
+        with open(path) as f:
+            text = f.read()
+        
+        return text
 
 
 if __name__=="__main__":

@@ -16,18 +16,24 @@ class DocusSignConfig():
         self.api_base_path = 'https://demo.docusign.net/restapi'
         self.APP_PATH = os.path.dirname(os.path.abspath(__file__))
 
-    def set_signer_name(self, name):
+    def set_signer_name(self, name: str):
         self.signer_name = name 
+        return self
     
-    def set_signer_email(self, email):
+    def set_signer_email(self, email: str):
         self.signer_email = email
+        return self
 
-    def set_file_name_path(self, path):
+    def set_file_name_path(self, path: str):
         self.file_name_path = path
+        return self
     
-    def set_base_url(self, url):
+    def set_base_url(self, url: str):
         self.base_url = url
-
+        return self
+    
+    def build(self):
+        return self
     
 class DocuSigner():
     

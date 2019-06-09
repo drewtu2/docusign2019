@@ -4,7 +4,7 @@ import os
 
 class CustomPDF(FPDF):
 
-    def config(self, sender, recipient, text):
+    def config(self, sender: Person, recipient: Person, text):
         self.sender = sender
         self.recipient = recipient
         self.text = text

@@ -1,4 +1,14 @@
 
+class PersonWithId():
+    def __init__(self, person, id):
+        self.id = id
+        self.person = person
+    
+    def __str__(self):
+        return self.person.first + " " + self.person.last
+        
+
+
 class Person:
     def __init__(self, first, last, address, email):
         self.first = first
@@ -19,7 +29,7 @@ class Address:
         self.zipcode = zipcode
 
     def __str__(self):
-        return self.street+"\n"+self.city+self.state+self.zipcode
+        return "%s\n%s, %s %s" % (self.street, self.city, self.state, str(self.zipcode))
 
 class ParkHistoryEntry:
     def __init__(self, park: str, date: str):
