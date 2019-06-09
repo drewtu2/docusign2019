@@ -30,7 +30,7 @@ def get_my_reps(address):
 	data = r.json()
 	officials = data['officials']
 
-	print(officials)
+	#print(officials)
 
 	return_data = []
 	return_len = len(officials)
@@ -47,7 +47,7 @@ def get_my_reps(address):
 	    except:
 	        email = 'None'
 
-	    print(name, position, email)
+	    #print(name, position, email)
 
 	    
 	    return_data.append([name,position, email])
