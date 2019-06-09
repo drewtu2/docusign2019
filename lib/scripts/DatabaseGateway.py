@@ -48,17 +48,17 @@ class DatabaseGateway:
         self._updateUser(userId)
 
     def increment_advocate(self, issueId: str):
-        with open(os.path.join(self.APP_PATH, self.advocate_count_folder, "issue%s.txt"%issueId), "r") as f:
+        with open(os.path.join(self.APP_PATH, self.advocate_count_folder, "%s.txt"%issueId), "r") as f:
             for line in f:
                 count = int(line)
                 print(count)
                 count +=1
                 print(count)
-        with open(os.path.join(self.APP_PATH, self.advocate_count_folder, "issue%s.txt"%issueId), 'w+') as f:
+        with open(os.path.join(self.APP_PATH, self.advocate_count_folder, "%s.txt"%issueId), 'w+') as f:
             f.write(str(count))
     
     def get_num_advocates(self, issueId: str):
-        with open(os.path.join(self.APP_PATH, self.advocate_count_folder, "issue%s.txt"%issueId)) as f:
+        with open(os.path.join(self.APP_PATH, self.advocate_count_folder, "%s.txt"%issueId)) as f:
             for line in f:
                 num_advocates = int(line)
         return num_advocates
