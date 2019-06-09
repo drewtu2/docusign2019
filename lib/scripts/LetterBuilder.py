@@ -11,7 +11,6 @@ class LetterBuilder:
     DEFAULT_LETTER_FILE= os.path.join(APP_PATH, 'sample_letter/build/temp.pdf')
 
     def __init__(self):
-        self.APP_PATH = os.path.dirname(os.path.abspath(__file__))
         self.recipient = None 
         self.sender = None
         self.dbGateway = DatabaseGateway()
@@ -45,16 +44,8 @@ class LetterBuilder:
         
         print("Building pdf")
         pdf = CustomPDF()
-        pdf.config(self.sender.person, self.recipient, "hello")
-        # Create the special value {nb}
-        pdf.alias_nb_pages()
-        pdf.add_page()
-        pdf.add_font('DejaVu', '', os.path.join(self.APP_PATH, 'DejaVuSansCondensed.ttf'), uni=True)
-        pdf.set_font('DejaVu', '', 14)
-        line_no = 1
-        
-        pdf.multi_cell(0, 10, txt=self._get_message_content())
-        pdf.output(self.pdf_path)
+        pdf.config(self.sender.person, self.recipient, self._get_message_content())
+        pdf.build(self.pdf_path)
 
         return self.pdf_path
 
@@ -83,7 +74,7 @@ class LetterBuilder:
 if __name__ == '__main__':
     bob = PersonWithId(Person("Bob", "Builder", 
         Address("101 bob way", "bob town", "bb", "00000"),
-        "bob@gmail.com"), 000)
+        "bob@gmail.com"), "000")
 
     sen = Person("sob", "suilder", 
         Address("101 sob way", "sob town", "ss", "10000"),

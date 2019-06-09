@@ -10,6 +10,18 @@ class CustomPDF(FPDF):
         self.text = text
         self.APP_PATH = os.path.dirname(os.path.abspath(__file__))
  
+    def build(self, pdf_path: str):
+        print("Building pdf to %s" % pdf_path)
+        print("This usually takes a couple of seconds....")
+        # Create the special value {nb}
+        self.alias_nb_pages()
+        self.add_page()
+        self.add_font('DejaVu', '', os.path.join(self.APP_PATH, 'DejaVuSansCondensed.ttf'), uni=True)
+        self.set_font('DejaVu', '', 14)
+        
+        self.multi_cell(0, 10, txt=self.text)
+        self.output(pdf_path)
+
     def header(self):
         # Set up a logo
         self.image(os.path.join(self.APP_PATH, 'sample_letter/recycle.png'), 10, 8, 33)
