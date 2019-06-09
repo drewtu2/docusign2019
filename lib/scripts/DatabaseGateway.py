@@ -23,9 +23,9 @@ class DatabaseGateway:
         self._updateUser("000")
     
     def setup_users(self):
-        self.register_user("000", Person("Bob", "Builder", 
-            Address("101 bob way", "bob town", "bb", "50014"),
-            "bob@gmail.com"))
+        self.register_user("000", Person("John", "Wick", 
+            Address("101 KickAss Way", "Baba Yaga", "W", "50014"),
+            "wick@gmail.com"))
         self.check_in_user("000", "Yellow Stone National Park", "Jan 1, 2019")
         self.check_in_user("000", "Yosemite National Park", "Feb 1, 2019")
         self.check_in_user("000", "Lassen National Park", "March 1, 2019")
@@ -127,5 +127,5 @@ if __name__=="__main__":
     
     db.setup_users()
     print("history: " + str(db.get_park_history_from_userId("000")))
-    db.check_in_user("000", "test", "today")
+    #db.check_in_user("000", "test", "today")
     print("history: " + str(db.get_park_history_from_userId("000")))
