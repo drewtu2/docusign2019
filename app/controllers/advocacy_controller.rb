@@ -22,7 +22,7 @@ class AdvocacyController < ApplicationController
     session[:issue_id] = params[:id]
     session[:supporting_issue] = Issue.find(params[:id]).title
 
-    result = `python3 ./lib/scripts/ICareActivity.py --hostUrl="http://08eca4bc.ngrok.io"`
+    result = `python3 ./lib/scripts/ICareActivity.py --issueId="issue#{params[:id]}" --hostUrl="http://08eca4bc.ngrok.io"`
     url= result.split("\n")[-1]
     # Advocacy.create(user_id: session[:user_id], issue_id: params[:id])
     redirect_to url
