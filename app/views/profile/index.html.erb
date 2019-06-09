@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4">
+        <img src="/assets/wick.jpg" style="border-radius: 50px " class="img">
+      </div>
+      <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8">
+        <div class="container" style="border-bottom:1px solid black">
+          <h2><%= "#{@user.first_name} #{@user.last_name} (#{@user.username})" %></h2>
+        </div>
+        <hr>
+        <form accept-charset="UTF-8" action="/profile/<%= @user.id %>" method="post" style="border-radius: 1rem;">
+          <div class="form-group">
+            <label for="user_first_name">First Name</label>
+            <input class="form-control form-rounded" id="user_first_name" name="user[first_name]" type="text" value="<%= @user.first_name %>">
+          </div>
+          <div class="form-group">
+            <label for="user_last_name">Last Name</label>
+            <input class="form-control form-rounded" id="user_last_name" name="user[last_name]" type="text" value="<%= @user.last_name %>">
+          </div>
+          <div class="form-group">
+            <label for="user_username">Username</label>
+            <input class="form-control form-rounded" id="user_username" name="user[username]" type="text" value="<%= @user.username %>">
+          </div>
+          <div class="form-group">
+            <label for="user_phone_number">Phone Number</label>
+            <input class="form-control form-rounded" id="user_phone_number" name="user[phone_number]" type="text" value="<%= @user.phone_number %>">
+          </div>
+          <div class="form-group">
+            <label for="user_email">Email</label>
+            <input class="form-control form-rounded" id="user_email" name="user[email]" type="email" value="<%= @user.email %>">
+          </div>
+          <div class="form-group">
+            <label for="user_zip">Zip Code</label>
+            <input class="form-control form-rounded" id="user_zip" name="user[zip]" type="text" value="<%= @user.zip %>">
+          </div>
+          <input class="btn btn-success" name="commit" type="submit" value="Save">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

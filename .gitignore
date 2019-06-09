@@ -84,3 +84,7 @@ pickle-email-*.html
 *~
 
 venv
+__pycache__/
+.vscode
+eg-03-python-auth-code-grant/
+
