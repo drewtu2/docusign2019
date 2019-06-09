@@ -7,6 +7,8 @@ class DatabaseGateway:
     def __init__(self):
         self.APP_PATH = os.path.dirname(os.path.abspath(__file__))
         self.issue_folder = "sample_letter/issues/"
+        self.advocate_count_folder = "db/advocate_count"
+        self.users_folder = "db/users"
         
         self.users = {
             "000": Person("Bob", "Builder", 
@@ -21,7 +23,17 @@ class DatabaseGateway:
         pass
     
     def increment_advocate(self, userId: str, issueId: str):
-        pass
+        with open(os.path.join(self.APP_PATH, self.advocate_count_folder, "%s.txt"%issueId)) as f:
+            # Read the value in f
+            # Increment it by 1
+            pass # delete this when you fill it
+    
+    def get_num_advocates(self, issueId: str):
+        num_advocates = 0
+        with open(os.path.join(self.APP_PATH, self.advocate_count_folder, "%s.txt"%issueId)) as f:
+            # Read the value in f
+            pass # delete this when you fill it
+        return num_advocates
 
     def get_senator_from_zip(self, zip) -> Person:
 
