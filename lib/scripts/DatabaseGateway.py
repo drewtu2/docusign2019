@@ -47,7 +47,7 @@ class DatabaseGateway:
         self._updateUser(userId)
 
     
-    def increment_advocate(self, userId: str, issueId: str):
+    def increment_advocate(self, issueId: str):
         with open(os.path.join(self.APP_PATH, self.advocate_count_folder, "%s.txt"%issueId)) as f:
             # Read the value in f
             # Increment it by 1

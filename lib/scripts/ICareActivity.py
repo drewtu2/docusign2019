@@ -27,6 +27,8 @@ class ICareActivity:
             .set_cc_name(str(self.dbGateway.get_senator_from_userId(userId))) \
             .build()
 
+        self.dbGateway.increment_advocate(issueId)
+
         signer = DocuSignInterface.DocuSigner(config)
         return signer.embedded_signing_ceremony()
 
