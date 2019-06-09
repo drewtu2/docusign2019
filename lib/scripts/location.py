@@ -72,9 +72,9 @@ def get_nearest_park(latitude, longitude):
 	while True:
 		try:
 			name = data['features'][i]['attributes']['FORESTNAME']
-			print(name)
+			#print(name)
 			lat,lng = get_park_coordinates(name)
-			print(lat,lng)
+			#print(lat,lng)
 			park_geo.append([name, lat, lng])
 			i+=1
 		except:
@@ -97,7 +97,7 @@ def get_nearest_park(latitude, longitude):
 	for park in park_rank:
 			park_ranked.append(park[0])
 
-	print(park_ranked)
+	#print(park_ranked)
 	return(park_ranked[0])
 
 
