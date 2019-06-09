@@ -6,12 +6,16 @@ def get_my_location(latitude, longitude):
 	#import requests library
 	import requests
 
+	#specify google api - geocode
 	url = "https://maps.googleapis.com/maps/api/geocode/json"
+	#Google cloud key
 	key = "AIzaSyADl4FKdSyZFr_cIpnFSXJKctA0fqNLcGQ"
 
+	#Parameters for get request
 	params = {'key': key,
 	'latlng' : str(latitude) +","+str(longitude)}
 
+	#Sending get request and extracting data from returned JSON file
 	r = requests.get(url = url, params = params)
 	data = r.json()
 	address = data['results'][0]['formatted_address']
@@ -27,12 +31,15 @@ def get_park_coordinates(park_name):
 	#import requests library
 	import requests
 
+	#specify google api - geocode
 	url = "https://maps.googleapis.com/maps/api/geocode/json"
 	key = "AIzaSyADl4FKdSyZFr_cIpnFSXJKctA0fqNLcGQ"
 
+	#Parameters for get request
 	params = {'key': key,
 	'address' : park_name}
 
+	#Sending get request and extracting data from returned JSON file
 	r = requests.get(url = url, params = params)
 	data = r.json()
 	lat = data['results'][0]['geometry']['location']['lat']
@@ -53,21 +60,26 @@ def get_nearest_park(latitude, longitude):
 	#import MATHHHHHHHH
 	import math
 
+	#specify arcx api - Forest
 	url = "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ProclaimedForestBoundaries_01/MapServer/0/query?where=1%3D1&outFields=FORESTNAME&returnGeometry=false&outSR=&f=json"
 
+	#Sending get request and extracting data from returned JSON file
 	r = requests.get(url = url)
 	data = r.json()
-	print("Features length:")
-	park_count = len(data['features'])
-	print(park_count)
 
 	park_geo = []
-	for i in range (park_count):
-		name = data['features'][i]['attributes']['FORESTNAME']
-		print(name)
-		lat,lng = get_park_coordinates(name)
-		print(lat,lng)
-		park_geo.append([name, lat, lng])
+	i=0
+	while True:
+		try:
+			name = data['features'][i]['attributes']['FORESTNAME']
+			print(name)
+			lat,lng = get_park_coordinates(name)
+			print(lat,lng)
+			park_geo.append([name, lat, lng])
+			i+=1
+		except:
+			('Out of Bounds, Exit')
+			break
 
 	#Get distance from our location to each park
 	park_rank = []
