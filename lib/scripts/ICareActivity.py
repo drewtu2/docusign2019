@@ -61,4 +61,4 @@ if __name__ == "__main__":
     activity = ICareActivity()
     return_url = activity.run(args.userId, args.issueId, args.hostUrl)
     
-    print("Return Url: " + return_url)
+    print(return_url)
