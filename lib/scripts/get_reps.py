@@ -1,9 +1,18 @@
 def get_my_reps(address):
+	
+
+	#Parameters: any address query that Google can interpret.
+	#Can be a full address, just a zip code, just a street address, whatever you please.
+
+	#Returns in list format:
+	#	reps = [
+	#		["Senator1_Name","Position","Email"],
+	#		["Senator2_Name","Position","Email"],
+	#		["Representative_Name","Position","Email"]
+	#	]
+
 	#import requests library
 	import requests
-
-	# Get request:
-	# GET https://www.googleapis.com/civicinfo/v2/representatives
 
 	url = "https://www.googleapis.com/civicinfo/v2/representatives"
 
@@ -18,6 +27,8 @@ def get_my_reps(address):
 
 	data = r.json()
 	officials = data['officials']
+
+	print(officials)
 
 	return_data = []
 	return_len = len(officials)
@@ -39,6 +50,8 @@ def get_my_reps(address):
 	    
 	    return_data.append([name,position, email])
 	return return_data
+
+
 
 
 #Arbitrary Trump Pic:

@@ -26,7 +26,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap', '~> 4.0.0'
 gem 'high_voltage'
 gem 'jquery-rails'
-gem 'mysql2', '~> 0.3.18'
+gem "mysql2", "~> 0.4.8"
 group :development do
   gem 'better_errors'
   gem 'rails_layout'
