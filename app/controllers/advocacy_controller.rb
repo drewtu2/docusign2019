@@ -6,6 +6,11 @@ class AdvocacyController < ApplicationController
       # Get senator details
       @sent_to = "Senator BLA BLA BLA at blabla@blabl.com"
     end
+
+    if params[:donation].present?
+      @thank = "true"
+      @donation = "true"
+    end
     @issues = Issue.all
     @supported = User.find(session[:user_id]).advocacies.map(&:issue_id)
   end

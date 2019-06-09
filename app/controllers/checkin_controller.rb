@@ -1,6 +1,6 @@
 class CheckinController < ApplicationController
   def index
-    @checkins = User.find(session[:user_id]).checkins.order('created_at DESC')
+    @checkins = User.find(session[:user_id]).checkins.includes(:location).order('created_at DESC')
   end
 
   def new

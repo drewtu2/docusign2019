@@ -7,4 +7,6 @@ from datetime import datetime
 def save_checkin(latitude, longitude):
 	db = DatabaseGateway()
 	time = datetime.today().strftime('%m - %d - %Y')
-	db.check_in_user('000', get_nearest_park(latitude,longitude), time)
+	output = get_nearest_park(latitude,longitude)
+	print(output)
+	db.check_in_user('000', output, time)

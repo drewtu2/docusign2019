@@ -5,7 +5,7 @@ class CreateCheckins < ActiveRecord::Migration[5.2]
       t.string :lattitude
       t.string :image
       t.string :user_id
-      t.string :location
+      t.integer :location_id
       t.timestamps
     end
   end
