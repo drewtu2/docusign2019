@@ -3,10 +3,10 @@ class AdvocacyController < ApplicationController
     if session[:supporting_issue].present?
       @thank = "true"
       @supporting_issue = session.delete(:supporting_issue)
-      Advocacy(user_id: session[:user_id], issue_id: session[:issue_id])
+      Advocacy.create(user_id: session[:user_id], issue_id: session[:issue_id])
       result = `python3 ./lib/scripts/get_reps.py --zip "50014"`
       # Get senator details
-      @sent_to = "Senator #{result.split("\n").first.split(",").first.split("'").last} at #{result.split("\n").first.split(",").last.split("'")[1]}"
+      @sent_to = "Senator #{result.split("\n").first.split(",")[-3].split("'").last} at #{result.split("\n").first.split(",").last.split("'")[1]}"
     end
 
     if params[:donation].present?
