@@ -16,6 +16,9 @@ class DatabaseGateway:
         self.users_history = {
             "000": [ParkHistoryEntry("Yellow Stone National Park", "Jan 1, 2019")]
         }
+    
+    def check_in_user(self, userId: str, parkName: str, date: str):
+        pass
 
     def get_senator_from_zip(self, zip) -> Person:
 
