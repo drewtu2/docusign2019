@@ -1,1 +1,15 @@
-<h1>Parks</h1>
+<!--<img class="img-responsive" src="/assets/coming_soon">-->
+<div class="container-fluid">
+  <% @parks.each do |park|%>
+    <div class="col-lg-6 mb-4">
+      <div class="card text-white shadow" style="background-size: 260px 80px;background-image: url('/assets/<%= get_random_image %>')">
+        <div class="card-body">
+          <%= park.name %>
+          <div class="text-white-50 small"><%= park.state %></div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+

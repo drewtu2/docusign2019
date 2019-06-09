@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_09_082154) do
+ActiveRecord::Schema.define(version: 2019_06_09_153318) do
 
   create_table "advocacies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2019_06_09_082154) do
   end
 
   create_table "checkins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "longitute"
+    t.string "longitude"
     t.string "lattitude"
     t.string "image"
     t.string "user_id"
@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(version: 2019_06_09_082154) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "summary"
+  end
+
+  create_table "locations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "state"
+    t.string "longitude"
+    t.string "lattitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

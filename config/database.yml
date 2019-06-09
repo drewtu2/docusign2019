@@ -28,8 +28,8 @@ test:
   database: docusign2019_test
   pool: 5
   username: root
-  password:
-  host: localhost
+  password: password1
+  host: 35.235.94.39
 
 production:
   adapter: mysql2

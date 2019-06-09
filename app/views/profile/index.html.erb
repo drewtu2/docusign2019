@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="jumbotron">
+  <div class="jumbotron" style="background: rgba(204, 204, 204, 0.5)">
     <div class="row">
       <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4">
         <img src="/assets/wick.jpg" style="border-radius: 50px " class="img">
@@ -11,27 +11,27 @@
         <hr>
         <form accept-charset="UTF-8" action="/profile/<%= @user.id %>" method="post" style="border-radius: 1rem;">
           <div class="form-group">
-            <label for="user_first_name">First Name</label>
+            <label for="user_first_name"><b>First Name</b></label>
             <input class="form-control form-rounded" id="user_first_name" name="user[first_name]" type="text" value="<%= @user.first_name %>">
           </div>
           <div class="form-group">
-            <label for="user_last_name">Last Name</label>
+            <label for="user_last_name"><b>Last Name</b></label>
             <input class="form-control form-rounded" id="user_last_name" name="user[last_name]" type="text" value="<%= @user.last_name %>">
           </div>
           <div class="form-group">
-            <label for="user_username">Username</label>
+            <label for="user_username"><b>Username</b></label>
             <input class="form-control form-rounded" id="user_username" name="user[username]" type="text" value="<%= @user.username %>">
           </div>
           <div class="form-group">
-            <label for="user_phone_number">Phone Number</label>
+            <label for="user_phone_number"><b>Phone Number</b></label>
             <input class="form-control form-rounded" id="user_phone_number" name="user[phone_number]" type="text" value="<%= @user.phone_number %>">
           </div>
           <div class="form-group">
-            <label for="user_email">Email</label>
+            <label for="user_email"><b>Email</b></label>
             <input class="form-control form-rounded" id="user_email" name="user[email]" type="email" value="<%= @user.email %>">
           </div>
           <div class="form-group">
-            <label for="user_zip">Zip Code</label>
+            <label for="user_zip"><b>Zip Code</b></label>
             <input class="form-control form-rounded" id="user_zip" name="user[zip]" type="text" value="<%= @user.zip %>">
           </div>
           <input class="btn btn-success" name="commit" type="submit" value="Save">

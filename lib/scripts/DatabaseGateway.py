@@ -47,19 +47,15 @@ class DatabaseGateway:
             pickle.dump(data, f)
         self._updateUser(userId)
 
-    
     def increment_advocate(self, issueId: str):
-        with open(os.path.join(self.APP_PATH, self.advocate_count_folder, "issue%s.txt"%issueId)) as f:
+        with open(os.path.join(self.APP_PATH, self.advocate_count_folder, "issue%s.txt"%issueId), "r") as f:
             for line in f:
                 count = int(line)
                 print(count)
                 count +=1
                 print(count)
-            f.close()
         with open(os.path.join(self.APP_PATH, self.advocate_count_folder, "issue%s.txt"%issueId), 'w+') as f:
             f.write(str(count))
-            f.close()
-
     
     def get_num_advocates(self, issueId: str):
         with open(os.path.join(self.APP_PATH, self.advocate_count_folder, "issue%s.txt"%issueId)) as f:
