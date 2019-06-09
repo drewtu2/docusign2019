@@ -1,18 +1,61 @@
 <%# navigation styled for Bootstrap 4.0 %>
-<div class="container">
-  <nav class="navbar navbar-dark bg-inverse">
-    <ul class="nav navbar-nav clearfix">
-      <li class="nav-item">
-        <button class="navbar-toggler hidden-sm-up nav-link" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
-          &#9776;
-        </button>
-      </li>
-    </ul>
-    <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
-      <%= link_to "Rails bootstrap", root_path, class: 'navbar-brand' %>
-      <ul class="nav navbar-nav">
-        <%= render 'layouts/navigation_links' %>
+<nav id="sidebar" class="sidebar-wrapper">
+  <div class="sidebar-content">
+    <!-- sidebar-brand  -->
+    <div class="sidebar-item sidebar-brand">
+      <a href="#">Go Wild !</a>
+    </div>
+    <!-- sidebar-header  -->
+    <div class="sidebar-item sidebar-header d-flex flex-nowrap">
+      <div class="user-pic">
+        <img class="img-responsive img-rounded" src="/assets/wick.jpg" alt="User picture" style="border-radius: 15px">
+      </div>
+      <div class="user-info">
+                        <span class="user-name"><%= session[:first_name] %>
+                            <strong><%= session[:last_name] %></strong>
+                        </span>
+        <span class="user-role"><%= session[:username] %></span>
+      </div>
+    </div>
+    <!-- sidebar-menu  -->
+    <div class=" sidebar-item sidebar-menu">
+      <ul>
+        <li class="sidebar-submenu <%= 'active' if current_page?(profile_path) || current_page?(root_path)%>">
+          <a href="/profile">
+            <i class="fas fa-user-alt"></i>
+            <span class="menu-text">Profile</span>
+          </a>
+        </li>
+        <li class="sidebar-submenu <%= 'active' if current_page?(wallet_path)%>">
+          <a href="/wallet">
+            <i class="fas fa-wallet"></i>
+            <span class="menu-text">Wallet</span>
+          </a>
+        </li>
+        <li class="sidebar-submenu <%= 'active' if current_page?(checkin_path)%>">
+          <a href="/checkin">
+            <i class="fas fa-map-pin"></i>
+            <span class="menu-text">Check-ins</span>
+          </a>
+        </li>
+        <li class="sidebar-submenu <%= 'active' if current_page?(advocacy_path)%>">
+          <a href="/advocacy">
+            <i class="fas fa-vote-yea badge-sonar"></i>
+            <span class="menu-text">
+              Advocacy
+              <span class="badge badge-pill badge-danger">New !</span>
+            </span>
+          </a>
+        </li>
+        <li class="sidebar-submenu  <%= 'active' if current_page?(parks_path)%>">
+          <a href="/parks">
+            <i class="fas fa-tree"></i>
+            <span class="menu-text">Parks</span>
+          </a>
+        </li>
       </ul>
     </div>
-  </nav>
-</div>
+    <!-- sidebar-menu  -->
+  </div>
+
+</nav>

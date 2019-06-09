@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Docusign2019" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Docusign2019" %>">
-    <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-    <%= csrf_meta_tags %>
-  </head>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= content_for?(:title) ? yield(:title) : "Go Wild" %></title>
+  <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Docusign" %>">
+<!--  <script src="https://github.com/pipwerks/PDFObject/blob/master/pdfobject.min.js"></script>-->
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <script src="https://kit.fontawesome.com/ed1beaaff6.js"></script>
+  <%= csrf_meta_tags %>
+</head>
   <body>
-    <header>
-      <%= render 'layouts/navigation' %>
-    </header>
-    <main role="main">
-       <%= render 'layouts/messages' %>
-       <%= yield %>
-    </main>
+    <div class="page-wrapper default-theme sidebar-bg bg1 toggled" >
+      <%= render 'layouts/navigation' %>        <!-- page-content  -->
+      <main class="page-content pt-2">
+        <a id="toggle-sidebar" class="btn btn-secondary" href="#">
+          <span>Menu</span>
+        </a>
+        <div id="overlay" class="overlay"></div>
+        <div class="container-fluid p-5">
+
+          <%= render 'layouts/messages' %>
+          <%= yield %>
+        </div>
+      </main>
+    </div>
   </body>
 </html>
