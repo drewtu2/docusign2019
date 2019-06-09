@@ -98,6 +98,7 @@ def get_nearest_park(latitude, longitude):
 			park_ranked.append(park[0])
 
 	print(park_ranked)
+	return(park_ranked[0])
 
 
 
