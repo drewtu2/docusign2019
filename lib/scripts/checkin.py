@@ -15,8 +15,8 @@ def save_checkin(latitude, longitude):
 if __name__ == "__main__":
     parser=argparse.ArgumentParser()
 
-    parser.add_argument('--lat', type=str, help='Lat')
-    parser.add_argument('--long', type=str, help='Long')
+    parser.add_argument('--lat', type=float, help='Lat')
+    parser.add_argument('--long', type=float, help='Long')
     args=parser.parse_args()
     
     print(save_checkin(args.lat, args.long))
