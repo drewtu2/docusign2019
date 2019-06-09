@@ -1,3 +1,5 @@
+import argparse
+
 def get_my_reps(address):
 	
 
@@ -55,4 +57,12 @@ def get_my_reps(address):
 
 
 #Arbitrary Trump Pic:
-trump_pic = "https://www.whitehouse.gov/sites/whitehouse.gov/files/images/45/PE%20Color.jpg"
+#trump_pic = "https://www.whitehouse.gov/sites/whitehouse.gov/files/images/45/PE%20Color.jpg"
+
+if __name__ == "__main__":
+    parser=argparse.ArgumentParser()
+
+    parser.add_argument('--zip', type=str, help='Zip Code (as string)')
+    args=parser.parse_args()
+    
+    print(get_my_reps(args.zip))
