@@ -1,6 +1,5 @@
-<script src="https://github.com/pipwerks/PDFObject/blob/master/pdfobject.min.js"></script>
 
-<div class="row">
+<div class="row advocacy">
     <% @issues.each do |issue|%>
       <div class="col-sm">
       <div class="card" >
@@ -34,7 +33,6 @@
     <% end %>
   </div>
   <% @issues.each do |issue|%>
-
     <div class="portfolio-modal modal fade" id="portfolioModal<%= issue.id %>" tabindex="-1" role="dialog" aria-labelledby="portfolioModal<%= issue.id %>Label" aria-hidden="true">
       <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
@@ -63,7 +61,7 @@
                   <!-- Portfolio Modal - Text -->
                   <p class="mb-lg-5"><%= issue.description.html_safe %></p>
                   <% if @supported.include?(issue.id) %>
-                    <a class="btn btn-success" href="#" role="button">Donate !</a>
+                      <a class="btn btn-success" id="payContainer" href="https://secure.wilderness.org/page/42457/donate/1?_ga=2.201703633.1902207102.1560093327-1070288338.1560093327" role="button">Donate !</a>
                   <% else %>
                     <a class="btn btn-success" href=<%= edit_advocacy_path(issue.id)%> role="button">I Care !</a>
                   <% end %>
@@ -89,13 +87,17 @@
 
         <div class="modal-body">
           <div class="jumbotron jumbotron-fluid">
-            <div class="container">
+            <% if @donation %>
               <p class="lead text-center">Thank you for supporting <b><%= @supporting_issue %>.</b></p>
-              <hr>
-              <p class="lead text-center">  A personal e-mail has been sent to <b><%= @sent_to %></b> on your behalf.</p>
-              <hr>
-              <p class="lead text-center">  You have made a valuable contribution to the cause of preserving nature !</p>
-            </div>
+            <% else %>
+              <div class="container">
+                <p class="lead text-center">Thank you for supporting <b><%= @supporting_issue %>.</b></p>
+                <hr>
+                <p class="lead text-center">  A personal e-mail has been sent to <b><%= @sent_to %></b> on your behalf.</p>
+                <hr>
+                <p class="lead text-center">  You have made a valuable contribution to the cause of preserving nature !</p>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
