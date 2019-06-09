@@ -19,6 +19,9 @@ class DatabaseGateway:
     
     def check_in_user(self, userId: str, parkName: str, date: str):
         pass
+    
+    def increment_advocate(self, userId: str, issueId: str):
+        pass
 
     def get_senator_from_zip(self, zip) -> Person:
 
