@@ -9,6 +9,8 @@ class DocusSignConfig():
         self.account_id = os.environ["APIAccountId"]
         self.signer_name = None
         self.signer_email = None
+        self.cc_email = "tu.a+congressman@husky.neu.edu"
+        self.cc_name = "congress man bill"
         self.file_name_path = None
         self.base_url = None
         self.client_user_id = '123'
@@ -32,6 +34,14 @@ class DocusSignConfig():
         self.base_url = url
         return self
     
+    def set_cc_email(self, email: str):
+        self.cc_email = email
+        return self
+
+    def set_cc_name(self, name: str):
+        self.cc_name = name 
+        return self
+    
     def build(self):
         return self
     
@@ -53,6 +63,9 @@ class DocuSigner():
         self.client_user_id = config.client_user_id # Used to indicate that the signer will use an embedded
                                # Signing Ceremony. Represents the signer's userId within
                                # your application.
+
+        self.cc_email = config.cc_email
+        self.cc_name = config.cc_name
 
         # The document you wish to send. Path is relative to the root directory of this repo.
         # file_name_path = 'demo_documents/World_Wide_Corp_lorem.pdf'
@@ -101,6 +114,10 @@ class DocuSigner():
             routing_order = "1",
             client_user_id = self.client_user_id, # Setting the client_user_id marks the signer as embedded
         )
+        # Create the cc person (senator)
+        cc1 = CarbonCopy(email=self.cc_email, name=self.cc_name, \
+            recipient_id="2", routing_order="2")
+
 
         sign_here = SignHere( # DocuSign SignHere field/tab
             document_id = '1', 

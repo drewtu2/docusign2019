@@ -1,6 +1,7 @@
 from get_reps import get_my_reps
 from Entities import *
 import os
+import pickle
 
 class DatabaseGateway: 
 
@@ -18,9 +19,33 @@ class DatabaseGateway:
         self.users_history = {
             "000": [ParkHistoryEntry("Yellow Stone National Park", "Jan 1, 2019")]
         }
+
+        self._updateUser("000")
+    
+    def setup_users(self):
+        self.register_user("000", Person("Bob", "Builder", 
+            Address("101 bob way", "bob town", "bb", "50014"),
+            "bob@gmail.com"))
+        self.check_in_user("000", "Yellow Stone National Park", "Jan 1, 2019")
+        self.check_in_user("000", "Yosemite National Park", "Feb 1, 2019")
+        self.check_in_user("000", "Lassen National Park", "March 1, 2019")
+        self.check_in_user("000", "Joshua Tree Park", "April 1, 2019")
+    
+    def register_user(self, userId: str, person: Person):
+        obj = Profile(userId, person, [])
+
+        with open(os.path.join(self.APP_PATH, self.users_folder, "%s.txt"%userId), "wb") as f:
+            pickle.dump(obj, f)
+
     
     def check_in_user(self, userId: str, parkName: str, date: str):
-        pass
+        with open(os.path.join(self.APP_PATH, self.users_folder, "%s.txt"%userId), "rb") as f:
+            data = pickle.load(f)
+            data.history.append(ParkHistoryEntry(parkName, date))
+        with open(os.path.join(self.APP_PATH, self.users_folder, "%s.txt"%userId), "wb") as f:
+            pickle.dump(data, f)
+        self._updateUser(userId)
+
     
     def increment_advocate(self, userId: str, issueId: str):
         with open(os.path.join(self.APP_PATH, self.advocate_count_folder, "%s.txt"%issueId)) as f:
@@ -75,6 +100,12 @@ class DatabaseGateway:
 
         return senator_person
     
+    def _updateUser(self, userId):
+        with open(os.path.join(self.APP_PATH, self.users_folder, "%s.txt"%userId), "rb") as f:
+            obj = pickle.load(f)
+            self.users[userId] = obj.person
+            self.users_history[userId] = obj.history
+
     def get_park_history_from_userId(self, userId):
         return self.users_history[userId]
 
@@ -90,3 +121,8 @@ if __name__=="__main__":
     db = DatabaseGateway()
     sen = db.get_senator_from_zip(50014)
     print(sen.email)
+    
+    db.setup_users()
+    print("history: " + str(db.get_park_history_from_userId("000")))
+    db.check_in_user("000", "test", "today")
+    print("history: " + str(db.get_park_history_from_userId("000")))

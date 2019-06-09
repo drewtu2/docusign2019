@@ -24,6 +24,7 @@ class ICareActivity:
             .set_file_name_path(self._generate_document(userId, issueId)) \
             .set_signer_name(self.dbGateway.get_name_from_userId(userId)) \
             .set_signer_email(self.dbGateway.get_email_from_userId(userId)) \
+            .set_cc_name(str(self.dbGateway.get_senator_from_userId(userId))) \
             .build()
 
         signer = DocuSignInterface.DocuSigner(config)

@@ -1,4 +1,10 @@
 
+class Profile():
+    def __init__(self, id, person, history):
+        self.id = id
+        self.person = person
+        self.history = history
+
 class PersonWithId():
     def __init__(self, person, id):
         self.id = id
