@@ -18,7 +18,9 @@ class AdvocacyController < ApplicationController
   def edit
     # TODO : CALL script and get docusign redirect path. Check what to send.
     session[:supporting_issue] = Issue.find(params[:id]).title
+    result = `python3 ./lib/scripts/ICareActivity.py --hostUrl="http://08eca4bc.ngrok.io"`
+    url= result.split("\n")[-1]
     # Advocacy.create(user_id: session[:user_id], issue_id: params[:id])
-    redirect_to advocacy_path
+    redirect_to url
   end
 end
