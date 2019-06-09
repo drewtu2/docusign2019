@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   get '/wallet', to: 'wallets#index'
   get '/advocacy', to: 'advocacy#index'
   post '/profile/:id', to: 'profile#update'
+  post '/checkin', to: 'checkin#new'
   resources :advocacy
 end

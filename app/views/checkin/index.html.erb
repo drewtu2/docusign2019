@@ -1,0 +1,109 @@
+<button type="button" id="checkin_now" data-toggle="modal" data-target="#checkin_form" class="btn btn-secondary btn-lg btn-block" style="margin-bottom: 30px; border-radius: 20px">Check In Now</button>
+<% @checkins.each_slice(3) do |checkins| %>
+  <div class="card-deck" style="margin-bottom: 20px">
+    <% if checkins[0].present? %>
+      <div class="card">
+        <img src="/assets/<%= checkins[0].image %>" class="card-img-top rounded" style="margin-bottom: 20px">
+        <div class="card-body">
+          <h5 class="card-title"><%= checkins[0].location %>
+            <a href="#!" id="btn-share" data-toggle="modal" data-target="#share_modal"><i class="fas fa-share-alt" style="float: right"></i></a>
+          </h5>
+          <hr>
+          <p class="card-text">Visited on - <%= checkins[0].created_at.strftime("%B %d, %Y") %></p>
+        </div>
+      </div>
+    <% end %>
+    <% if checkins[1].present? %>
+      <div class="card">
+        <img src="/assets/<%= checkins[1].image %>" class="card-img-top rounded" style="margin-bottom: 20px">
+        <div class="card-body">
+          <h5 class="card-title"><%= checkins[1].location %>
+            <a href="#!" id="btn-share" data-toggle="modal" data-target="#share_modal"><i class="fas fa-share-alt" style="float: right"></i></a>
+          </h5>
+          <hr>
+          <p class="card-text">Visited on - <%= checkins[1].created_at.strftime("%B %d, %Y") %></p>
+        </div>
+      </div>
+    <% end %>
+    <% if checkins[2].present? %>
+      <div class="card">
+        <img src="/assets/<%= checkins[2].image %>" class="card-img-top rounded" style="margin-bottom: 20px">
+        <div class="card-body">
+          <h5 class="card-title"><%= checkins[2].location %>
+            <a href="#!" id="btn-share" data-toggle="modal" data-target="#share_modal"><i class="fas fa-share-alt" style="float: right"></i></a>
+          </h5>
+          <hr>
+          <p class="card-text">Visited on - <%= checkins[2].created_at.strftime("%B %d, %Y") %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="modal fade" id="share_modal" tabindex="-1" role="dialog" aria-labelledby="share_modallabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: 10px">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+      </button>
+
+      <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <a class="btn btn-block btn-social btn-facebook">
+                  <i class="fab fa-facebook-square"></i> Share on Facebook
+                </a>
+                <a class="btn btn-block btn-social btn-flickr">
+                  <i class="fab fa-flickr"></i> Share on Flickr
+                </a>
+                <a class="btn btn-block btn-social btn-instagram">
+                  <i class="fab fa-instagram"></i> Share on Instagram
+                </a>
+                <a class="btn btn-block btn-social btn-twitter">
+                  <i class="fab fa-twitter"></i> Share on Twitter
+                </a>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="checkin_form" tabindex="-1" role="dialog" aria-labelledby="checkin_form_label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Check In Now !</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <form id="checkin-image-form">
+            <div class="form-group">
+              <div class="custom-file">
+                <input id="checkin-image-input" name="csv_input" type="file" class="custom-file-input">
+                <label for="checkin-image-input" id="checkin-image-label" class="custom-file-label text-truncate">Choose file...</label>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button class="btn btn-primary" id="checkin-image-submit">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
