@@ -12,7 +12,7 @@ class CheckinController < ApplicationController
     end
     location = Location.find_by_name(location_name)
     location = Location.create(name: location_name,lattitude: "38.733082", longitude: "-109.592514", state: "CA" ) unless location.present?
-    name = "#{SecureRandom.urlsafe_base64}_#{location}.#{params['file'].path.split('.').last}"
+    name = "#{location.name.split(" ").first.downcase}.#{params['file'].path.split('.').last}"
     FileUtils.mv(params['file'].path,"#{Rails.root.to_s}/app/assets/images/#{name}")
     Checkin.create(user_id: session[:user_id],lattitude: "38.733082", longitude: "-109.592514", location: location, image: name )
     render json: {
