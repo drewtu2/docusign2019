@@ -16,7 +16,7 @@ Docusign2019 - GoWild
 ![slide13][slide13]
 ![slide15][slide15]
 ![slide16][slide16]
-![demo][images/final_cut.mp4]
+![demo][demo]
 
 [slide1]: images/Slide01.png
 [slide2]: images/Slide02.png
@@ -34,6 +34,7 @@ Docusign2019 - GoWild
 [slide14]: images/Slide14.png
 [slide15]: images/Slide15.png
 [slide16]: images/Slide16.png
+[demo]: images/final_cut.mp4
 
 
 This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
